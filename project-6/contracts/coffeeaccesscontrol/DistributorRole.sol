@@ -5,12 +5,12 @@ import "./Roles.sol";
 
 // Define a contract 'DistributorRole' to manage this role - add, remove, check
 contract DistributorRole {
-
+using Roles for Roles.Role;
   // Define 2 events, one for Adding, and other for Removing
-
+    event DistributorAdded(address indexed account);
+    event DistributorRemoved(address indexed account);
   // Define a struct 'distributors' by inheriting from 'Roles' library, struct Role
-  event DistributorAdded(address indexed account);
-  event DistributorRemoved(address indexed account);
+   Roles.Role private distributors;
 
   // In the constructor make the address that deploys this contract the 1st distributor
   constructor() public {
