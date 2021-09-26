@@ -20,7 +20,7 @@ contract Ownable {
 
     /// Define a function modifier 'onlyOwner'
     modifier onlyOwner() {
-        require(isOwner());
+        require(isOwner(), "Must be contract owner to call method");
         _;
     }
 
@@ -42,7 +42,7 @@ contract Ownable {
 
     /// Define an internal function to transfer ownership
     function _transferOwnership(address newOwner) internal {
-        require(newOwner != address(0));
+        require(newOwner != address(0), "Invaid Address");
         emit TransferOwnership(origOwner, newOwner);
         origOwner = newOwner;
     }
