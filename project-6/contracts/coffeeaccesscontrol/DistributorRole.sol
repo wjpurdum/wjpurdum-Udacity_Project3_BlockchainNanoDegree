@@ -19,7 +19,7 @@ using Roles for Roles.Role;
 
   // Define a modifier that checks to see if msg.sender has the appropriate role
   modifier onlyDistributor() {
-    require(isDistributor(isDistributor(msg.sender), "SEnder does not have role 'Distributor'"));
+    require(isDistributor(msg.sender));
     _;
   }
 

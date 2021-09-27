@@ -1,9 +1,14 @@
 pragma solidity ^0.4.24;
 // Define a contract 'Supplychain'
-contract SupplyChain {
+import '../coffeecore/Ownable.sol';
+import '../coffeeaccesscontrol/ConsumerRole.sol';
+import '../coffeeaccesscontrol/DistributorRole.sol';
+import '../coffeeaccesscontrol/RetailerRole.sol';
+import '../coffeeaccesscontrol/FarmerRole.sol';
+contract SupplyChain is Ownable, ConsumerRole, RetailerRole, DistributorRole, FarmerRole {
 
   // Define 'owner'
-  address owner;
+  address mainOwner;
 
   // Define a variable called 'upc' for Universal Product Code (UPC)
   uint  upc;
@@ -64,7 +69,7 @@ contract SupplyChain {
 
   // Define a modifer that checks to see if msg.sender == owner of the contract
   modifier onlyOwner() {
-    require(msg.sender == owner);
+    require(msg.sender == mainOwner);
     _;
   }
 
@@ -142,17 +147,17 @@ contract SupplyChain {
   // and set 'sku' to 1
   // and set 'upc' to 1
   constructor() public payable {
-    owner = msg.sender;
+    mainOwner = msg.sender;
     sku = 1;
     upc = 1;
   }
 
   // Define a function 'kill' if required
-  function kill() public {
-    if (msg.sender == owner) {
-      selfdestruct(owner);
-    }
-  }
+//   function kill() public {
+//     if (msg.sender == owner) {
+//       selfdestruct(owner);
+//     }
+//   }
 
   // Define a function 'harvestItem' that allows a farmer to mark an item 'Harvested'
   function harvestItem(uint _upc, address _originFarmerID, 
@@ -166,7 +171,8 @@ contract SupplyChain {
     items[_upc].sku = sku;
     items[_upc].upc = upc;
     items[_upc].ownerID = _originFarmerID;
-    items[_upc].originFarmerId = _originFarmerID;
+    items[_upc].originFarmerID = _originFarmerID;
+	items[_upc].originFarmName = _originFarmName;
     items[_upc].originFarmInformation = _originFarmInformation;
     items[_upc].originFarmLatitude = _originFarmLatitude;
     items[_upc].originFarmLongitude = _originFarmLongitude;
@@ -201,7 +207,7 @@ contract SupplyChain {
   harvested(_upc)
   // Call modifier to verify caller of this function
   verifyCaller(items[_upc].ownerID)
-  onlyFarmer;
+  onlyFarmer
   {
     // Update the appropriate fields
     items[_upc].itemState = State.Processed;
@@ -411,7 +417,7 @@ contract SupplyChain {
   productID = items[_upc].productID;
   productNotes = items[_upc].productNotes;
   productPrice = items[_upc].productPrice;
-  itemState = items[_upc].itemState;
+  itemState = uint(items[_upc].itemState);
   distributorID = items[_upc].distributorID;
   retailerID = items[_upc].retailerID;
   consumerID = items[_upc].consumerID;

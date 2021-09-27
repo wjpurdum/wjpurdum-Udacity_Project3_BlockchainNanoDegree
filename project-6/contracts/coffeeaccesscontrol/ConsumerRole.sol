@@ -53,6 +53,6 @@ contract ConsumerRole {
   // Define an internal function '_removeConsumer' to remove this role, called by 'removeConsumer'
   function _removeConsumer(address account) internal {
     consumers.remove(account);
-    emit ConsumerRemoved(account)
+    emit ConsumerRemoved(account);
   }
 }

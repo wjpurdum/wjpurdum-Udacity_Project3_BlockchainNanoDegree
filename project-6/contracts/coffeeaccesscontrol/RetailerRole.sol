@@ -28,7 +28,7 @@ contract RetailerRole {
 
   // Define a function 'isRetailer' to check this role
   function isRetailer(address account) public view returns (bool) {
-    return retailers.has(address);
+    return retailers.has(account);
     
   }
 
