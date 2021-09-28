@@ -42,4 +42,4 @@ Saving successful migration to network...
 	web3 v^1.5.3"
 
 ## Tests Passing
-![tests]("./images/TestsPassing.png)
+![tests]("./images/TestsPassing.png")
