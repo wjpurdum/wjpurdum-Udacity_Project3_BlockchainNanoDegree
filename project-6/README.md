@@ -40,3 +40,6 @@ Saving successful migration to network...
   	Truffle v4.1.14 (core: 4.1.14)
 	Solidity v0.4.24 (solc-js)
 	web3 v^1.5.3"
+
+## Tests Passing
+![tests]("./images/TestsPassing.png)
