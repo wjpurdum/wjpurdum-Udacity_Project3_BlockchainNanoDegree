@@ -152,10 +152,10 @@ contract SupplyChain is Ownable, ConsumerRole, RetailerRole, DistributorRole, Fa
     upc = 1;
   }
 
-  // Define a function 'kill' if required
+  //Define a function 'kill' if required
   function kill() public {
-    if (msg.sender == owner) {
-      selfdestruct(owner);
+    if (msg.sender == mainOwner) {
+      selfdestruct(mainOwner);
     }
   }
 
