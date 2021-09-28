@@ -33,7 +33,8 @@ Saving successful migration to network...
   ... 0x5e336938f0abd6841255f0560c74529aa3e918e82c3c22db9fbd7b1d04bb5c55
 
   ## Libraries Used
-  1. truffle-hdwallet-provider - for deploying contracts to Rinkeby 
+  1. truffle-hdwallet-provider - for deploying contracts to Rinkeby network
+  2. truffle - for compiling, migrating and deploying contracs to Rinkeby Test Network
   
   ## Package Versions:
   	Node - v8.10.0
