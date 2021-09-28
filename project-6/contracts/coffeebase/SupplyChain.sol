@@ -153,11 +153,11 @@ contract SupplyChain is Ownable, ConsumerRole, RetailerRole, DistributorRole, Fa
   }
 
   // Define a function 'kill' if required
-//   function kill() public {
-//     if (msg.sender == owner) {
-//       selfdestruct(owner);
-//     }
-//   }
+  function kill() public {
+    if (msg.sender == owner) {
+      selfdestruct(owner);
+    }
+  }
 
   // Define a function 'harvestItem' that allows a farmer to mark an item 'Harvested'
   function harvestItem(uint _upc, address _originFarmerID, 
@@ -324,7 +324,7 @@ contract SupplyChain is Ownable, ConsumerRole, RetailerRole, DistributorRole, Fa
     received(_upc)
     
     // Access Control List enforced by calling Smart Contract / DApp
-    onlyConsumer
+     
     {
     // Update the appropriate fields - ownerID, consumerID, itemState
       items[_upc].ownerID = msg.sender;
