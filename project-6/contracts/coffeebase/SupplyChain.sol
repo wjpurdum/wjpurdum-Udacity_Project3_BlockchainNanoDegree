@@ -166,6 +166,7 @@ contract SupplyChain is Ownable, ConsumerRole, RetailerRole, DistributorRole, Fa
   string  _originFarmLatitude, 
   string  _originFarmLongitude, 
   string  _productNotes) public 
+  onlyFarmer
   {
     // Add the new item as part of Harvest
     items[_upc].sku = sku;
@@ -264,6 +265,7 @@ contract SupplyChain is Ownable, ConsumerRole, RetailerRole, DistributorRole, Fa
     
     // Call modifer to send any excess ether back to buyer
     checkValue(_upc)
+	onlyDistributor
     
     {
     
@@ -324,7 +326,7 @@ contract SupplyChain is Ownable, ConsumerRole, RetailerRole, DistributorRole, Fa
     received(_upc)
     
     // Access Control List enforced by calling Smart Contract / DApp
-     
+     onlyConsumer
     {
     // Update the appropriate fields - ownerID, consumerID, itemState
       items[_upc].ownerID = msg.sender;
